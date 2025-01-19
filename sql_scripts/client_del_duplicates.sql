@@ -1,10 +1,10 @@
--- УДАЛЕНИЕ ДУБЛИКАТОВ В dm.client по уникальному составному ключу client_rk , effective_from_date
+-- УДАЛЕНИЕ ДУБЛИКАТОВ В dm.client
 select count(1) from dm.client as c ; -- до удаленгия дубликатов 20147, 3299 после
 
 begin;
 with dup_t as (
 	select 
-		row_number () over (partition by client_rk, effective_from_date order by effective_from_date desc) as row_num
+		row_number () over (partition by client_rk, effective_from_date order by effective_to_date desc) as row_num
 		, client_rk , effective_from_date 
 	from dm.client as c
 )
