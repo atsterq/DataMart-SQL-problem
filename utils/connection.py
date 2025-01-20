@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+os.environ["DB_NAME"] = "dwh"  # костыль для того чтобы psycopg2 подключался к dwh а не к banking-etl-db
+
 
 def connect_db():
     conn = psycopg2.connect(  # создаем подключение к бд
