@@ -9,11 +9,9 @@ load_dotenv()
 
 
 def create_schema_and_tables(conn, cur):
-    # создадим схему и таблицы для загрузки данных из data/
+    # создадим таблицы для загрузки данных из data/ чтобы сравнить с имеющимися данными
     cur.execute(
         """
-        CREATE SCHEMA IF NOT EXISTS data;
-
         DROP TABLE IF EXISTS data.deal_info;
         CREATE TABLE data.deal_info (
             deal_rk INT8,
@@ -56,7 +54,9 @@ def import_table_data(conn, cur, input_path, table_name, columns):
         input_path, sep=",", encoding="cp1251"
     )  # поменял кодировку чтобы csv прочиталось
 
-    values = ", ".join(["%s"] * len(columns)) # можно вставить кол-во аргументов равное длине значения из словаря tables
+    values = ", ".join(
+        ["%s"] * len(columns)
+    )  # можно вставить кол-во аргументов равное длине значения из словаря tables
     columns_str = ", ".join(columns)
 
     insert_query = f"""
@@ -82,7 +82,7 @@ def import_tables():
         create_schema_and_tables(conn, cur)
 
         tables = {
-            "data.deal_info": [
+            "deal_info": [
                 "deal_rk",
                 "deal_num",
                 "deal_name",
@@ -97,13 +97,13 @@ def import_tables():
                 "effective_from_date",
                 "effective_to_date",
             ],
-            "data.dict_currency": [
+            "dict_currency": [
                 "currency_cd",
                 "currency_name",
                 "effective_from_date",
                 "effective_to_date",
             ],
-            "data.product_info": [
+            "product_info": [
                 "product_rk",
                 "product_name",
                 "effective_from_date",
@@ -112,7 +112,7 @@ def import_tables():
         }
 
         for table, columns in tables.items():
-            file_name = f"{table.split('.')[1]}.csv"
+            file_name = f"{table}.csv"
             input_path = os.path.join(os.getenv("IMPORT_PATH"), file_name)
 
             import_table_data(conn, cur, input_path, table, columns)
