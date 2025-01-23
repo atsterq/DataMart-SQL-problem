@@ -1,6 +1,6 @@
 # Showcase
 - [2.1 duplicates (video)](https://disk.yandex.ru/i/m30DesPs3oFZkA), [sql script](sql_scripts/client_del_duplicates.sql)
-- [2.2 missing records (video)](https://disk.yandex.ru/client/disk/neoflex), [sql script](sql_scripts/missing_rec.sql)
+- [2.2 missing records (video)](https://disk.yandex.ru/i/hX4Z27ZkImKq9g), [sql script](sql_scripts/missing_rec.sql), [python script](import_data.py)
 - [2.3 differ in values (video)](https://disk.yandex.ru/client/disk/neoflex)
 # Problem
 В имеющихся витринах есть дефекты. Для того, чтобы заказчик был доволен и мог беспрепятственно иcпользовать их, необходимо оперативно устранить дефекты.  
