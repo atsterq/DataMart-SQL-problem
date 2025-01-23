@@ -396,7 +396,7 @@ FROM holiday_info;
 end;
 $$;
 
-call dm.fill_loan_holiday_info();
+call dm.fill_loan_holiday_info_v2();
 
 select count(1) from dm.loan_holiday_info_v2 as lhiv ; --10040
 
