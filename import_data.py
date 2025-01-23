@@ -50,6 +50,8 @@ def create_schema_and_tables(conn, cur):
 
 
 def import_table_data(conn, cur, input_path, table_name, columns):
+    cur.execute(f"TRUNCATE TABLE data.{table_name};")
+
     df = pd.read_csv(
         input_path, sep=",", encoding="cp1251"
     )  # поменял кодировку чтобы csv прочиталось
@@ -60,8 +62,8 @@ def import_table_data(conn, cur, input_path, table_name, columns):
     columns_str = ", ".join(columns)
 
     insert_query = f"""
-        insert into {table_name} ({columns_str})
-        values ({values})
+        INSERT INTO data.{table_name} ({columns_str})
+        VALUES ({values})
         """
 
     for index, row in df.iterrows():
