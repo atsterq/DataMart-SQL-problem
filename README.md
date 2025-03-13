@@ -1,7 +1,3 @@
-# Showcase
-- [2.1 duplicates (video)](https://disk.yandex.ru/i/m30DesPs3oFZkA), [sql script](sql_scripts/client_del_duplicates.sql)
-- [2.2 missing records (video)](https://disk.yandex.ru/i/hX4Z27ZkImKq9g), [sql script](sql_scripts/missing_rec.sql), [python script](import_data.py)
-- [2.3 differ in values (video)](https://disk.yandex.ru/i/mqjQhPj1ev-lEg), [sql script](sql_scripts/missing_rec.sql)
 # Problem
 В имеющихся витринах есть дефекты. Для того, чтобы заказчик был доволен и мог беспрепятственно иcпользовать их, необходимо оперативно устранить дефекты.  
 [Более подробное описание.](project_materials/project_description.md)  
@@ -9,10 +5,17 @@
 ## 1. Duplicates
 Имеется витрина dm.client, в которой содержится различная информация по клиентам банка. Заказчик сообщил, что в таблице имеются дубли, которые нужно устранить.  
 Необходимо подготовить запрос, по которому можно обнаружить все дубли в витрине и удалить их.
+## 1. Solution
+- [duplicates (video)](https://disk.yandex.ru/i/m30DesPs3oFZkA)
+- [sql script](sql_scripts/client_del_duplicates.sql)
 
 ## 2. Missing records
 Имеется витрина dm.loan_holiday_info, которая содержит информацию по кредитным каникулам, сделке и продукте, который был предоставлен клиенту в рамках сделки. После проверки качества данных выявилась проблема отсутствия некоторого количества записей в источниках витрины для некоторых периодов эффективности строк.  
 Необходимо проанализировать витрину, актуальное состояние таблиц-источников витрины и определить, по каким датам эффективности (effective_from_date или effective_to_date) отсутствуют строки и определить, какой способ загрузки новых данных подойдет: полная перегрузка таблицы или загрузка части данных.  
+## 2. Solution
+- [2 missing records (video)](https://disk.yandex.ru/i/hX4Z27ZkImKq9g)
+- [sql script](sql_scripts/missing_rec.sql)
+- [python script](import_data.py)
 
 ## 3. Differ in values
 Имеется витрина dm.account_balance_turnover, которая отражает изменение баланса счетов по дням. Заказчик очень требователен в части заполнения всех полей этой витрины, например суммы на начало и конец дня, наименование валюты. Во время проверки качества данных обнаружили, что у счетов иногда отличается account_out_sum - сумма на конец одного дня и account_in_sum - сумма на начало следующего.  
@@ -21,4 +24,7 @@
 2) Подготовить такой же запрос, только проблема теперь в том, что account_in_sum одного дня правильная, а account_out_sum предыдущего дня некорректна. Это означает, что если эти значения отличаются, то корректным значением для account_out_sum предыдущего дня выбирается значение account_in_sum текущего дня.
 3) Подготовить запрос, который поправит данные в таблице rd.account_balance используя уже имеющийся запрос из п.1
 4) Написать процедуру по аналогии с задание 2.2 для перезагрузки данных в витрину
+## 3. Solution
+- [3 differ in values (video)](https://disk.yandex.ru/i/mqjQhPj1ev-lEg)
+- [sql script](sql_scripts/missing_rec.sql)
 
